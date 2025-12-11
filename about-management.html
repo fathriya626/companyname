@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About – Management – </title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="subpage-about">
+  <header class="site-header small">
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+         <div class="placeholder-logo">LOGO</div> 
+        <span class="logo-text" style="font-weight:600;margin-left:8px;">CompanyName</span>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li class="dropdown">
+  <a href="#">About</a>
+  <div class="dropdown-box">
+    <a href="about-intro.html" class="drop-item">
+      <strong>Introduction</strong><br>
+      Learn about our company and legacy
+    </a>
+    <a href="about-vision.html" class="drop-item">
+      <strong>Vision & Mission</strong><br>
+      Our purpose and principles
+    </a>
+    <a href="about-management.html" class="drop-item">
+      <strong>Management</strong><br>
+      Meet our leadership team
+    </a>
+  </div>
+</li>
+          <li><a href="subsidiaries.html">Subsidiaries</a></li>
+          <li><a href="activities.html">Activities</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a class="cta" href="" target="_blank">shop with us</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger4" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <main class="content about-content">
+    
+      <a href="about-intro.html"></a>
+      <a href="about-vision.html"></a>
+      <a href="about-management.html" class="active"></a>
+    </nav>
+
+    <section class="about-section">
+      <button class="btn-back" onclick="history.back()">← Back</button>
+
+    
+
+    <section class="management-section">
+    <h1>Management</h1>
+
+    <!-- Person 1 -->
+    <div class="management-row">
+        <div class="photo-placeholder">Person 1<br>Image</div>
+
+        <div class="management-info">
+            <h2>person1</h2>
+            <h3>Chief Executive Officer</h3>
+            <p>
+               person name leads companyname with more than two decades of experience in medical technology, manufacturing strategy, and healthcare innovation. With a PhD in Biomedical Engineering, he has guided several regional companies through modernization, automation, and international expansion.
+Known for his strategic vision,person name focuses on strengthening local production capacity and ensuring that company name remains a pioneer in high-quality medical technology solutions across the GCC.
+            </p>
+        </div>
+    </div>
+
+    <!-- Person 2 -->
+    <div class="management-row">
+        <div class="photo-placeholder">Person 2<br>Image</div>
+
+        <div class="management-info">
+            <h2>Person2</h2>
+            <h3>Director of Operations</h3>
+            <p>
+               person name is responsible for driving product innovation and overseeing scientific research at companyname. She holds a Master’s degree in Pharmaceutical Sciences and has worked extensively on device design, clinical validation, and regulatory documentation.
+Her leadership ensures that every product meets the highest international standards while supporting the company’s mission to deliver reliable and affordable healthcare technologies.
+            </p>
+        </div>
+    </div>
+
+    <!-- Person 3 -->
+    <div class="management-row">
+        <div class="photo-placeholder">Person 3<br>Image</div>
+
+        <div class="management-info">
+            <h2>person3</h2>
+        <h3>Head of Manufacturing & Quality Assurance</h3>
+        <p>
+            person nmae oversees all factory operations and quality systems at companyname.
+            With 18 years of experience in industrial engineering and medical device manufacturing, he
+            specializes in GMP compliance, ISO certification, and automated manufacturing processes.
+            His commitment to excellence ensures industry-leading production efficiency.
+        </p>
+        </div>
+    </div>
+
+    <!-- Person 4 -->
+    <div class="management-row">
+        <div class="photo-placeholder">Person 4<br>Image</div>
+
+        <div class="management-info">
+           <h2>person4</h2>
+        <h3>Commercial & Strategic Partnerships Director</h3>
+        <p>
+            Person Name manages global partnerships, commercial strategy, and new market
+            development at companyname. With strong experience in healthcare business development, he has
+            established long-term collaborations with hospitals, distributors, and research institutions
+            throughout the GCC. His work supports companyname continued expansion and market strength.
+        </p>
+        </div>
+    </div>
+</section>
+
+  </main>
+
+ <footer class="site-footer">
+  <div class="container">
+     <p>© 2025 CompanyName. This is a template for demonstration purposes only.</p>
+  </div>
+</footer>
+
+<!-- ✅ Paste this here -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".main-nav");
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    });
+  }
+
+  const dropdown = document.querySelector(".dropdown");
+  if (dropdown) {
+    const dropBtn = dropdown.querySelector(".dropbtn");
+    const dropMenu = dropdown.querySelector(".dropdown-menu");
+
+    if (dropBtn && dropMenu) {
+      dropdown.addEventListener("mouseenter", () => {
+        if (window.innerWidth > 768) {
+          dropMenu.style.display = "block";
+        }
+      });
+      dropdown.addEventListener("mouseleave", () => {
+        if (window.innerWidth > 768) {
+          dropMenu.style.display = "none";
+        }
+      });
+
+      dropBtn.addEventListener("click", (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          dropMenu.classList.toggle("show");
+        }
+      });
+    }
+  }
+
+  document.querySelectorAll(".main-nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      if (hamburger && navMenu) {
+        navMenu.classList.remove("active");
+        hamburger.classList.remove("active");
+      }
+    });
+  });
+});
+</script>
+</body>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Find the drop container (based on your screenshot it is: li.dropdown > a + .dropdown-box)
+  const dropdownLi = document.querySelector('.dropdown');
+  if (!dropdownLi) return;
+
+  const aboutLink = dropdownLi.querySelector('a');
+  const dropBox = dropdownLi.querySelector('.dropdown-box');
+
+  // Create a chevron button only on mobile and only once
+  const chevron = document.createElement('button');
+  chevron.type = 'button';
+  chevron.className = 'mobile-chev';
+  chevron.setAttribute('aria-expanded', 'false');
+  chevron.setAttribute('aria-label', 'Open submenu');
+
+  // simple chevron styling inserted inline (you can move to CSS)
+  Object.assign(chevron.style, {
+    display: 'inline-block',
+    width: '36px',
+    height: '36px',
+    marginLeft: '8px',
+    verticalAlign: 'middle',
+    borderRadius: '6px',
+    border: 'none',
+    background: 'transparent',
+    cursor: 'pointer',
+    padding: '0'
+  });
+
+  // chevron icon (SVG)
+  chevron.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" ' +
+    'xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6" stroke="#222" stroke-width="2" ' +
+    'stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  // append chevron to the about anchor (so visually it shows on mobile)
+  if (aboutLink) aboutLink.parentNode.insertBefore(chevron, aboutLink.nextSibling);
+
+  // toggle handler: only toggle submenu when width <= 768 (mobile)
+  chevron.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768 && dropBox) {
+      e.preventDefault();
+      dropBox.classList.toggle('show');
+      const expanded = dropBox.classList.contains('show');
+      chevron.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    }
+  });
+
+  // Also make the main about anchor toggle on mobile (in case user taps the word)
+  if (aboutLink) {
+    aboutLink.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768 && dropBox) {
+        e.preventDefault();
+        dropBox.classList.toggle('show');
+        chevron.setAttribute('aria-expanded', dropBox.classList.contains('show') ? 'true' : 'false');
+      }
+    });
+  }
+
+  // Close menu if user resizes up to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && dropBox) {
+      dropBox.classList.remove('show');
+      chevron.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+
+
+</script>
+</script>
+</script>
+</html>

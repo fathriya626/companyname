@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CompanyName — Home</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-home">
+
+  <header class="site-header small">
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <div class="placeholder-logo">LOGO</div>
+        <span class="logo-text">CompanyName</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+
+          <!-- ABOUT dropdown -->
+          <li class="dropdown">
+            <!-- Important: dropbtn class and aria-expanded used by JS -->
+            <a href="#" class="dropbtn" aria-expanded="false">About <span class="chev">▾</span></a>
+
+            <div class="dropdown-box" role="menu" aria-hidden="true">
+              <a href="about-intro.html" class="drop-item" role="menuitem">
+                <strong>Introduction</strong><br><span class="muted">Learn about our company and legacy</span>
+              </a>
+              <a href="about-vision.html" class="drop-item" role="menuitem">
+                <strong>Vision &amp; Mission</strong><br><span class="muted">Our purpose and principles</span>
+              </a>
+              <a href="about-management.html" class="drop-item" role="menuitem">
+                <strong>Management</strong><br><span class="muted">Meet our leadership team</span>
+              </a>
+            </div>
+          </li>
+
+          <li><a href="subsidiaries.html">Subsidiaries</a></li>
+          <li><a href="activities.html">Activities</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a class="cta" href="" target="_blank">shop with us</a></li>
+        </ul>
+      </nav>
+
+      <!-- hamburger button for mobile -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- hero -->
+    <section class="hero">
+      <!-- put an image file named hero.jpg in the same folder -->
+      <img src="hero.jpg" alt="City skyline" class="hero-img" />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Advancing Care For Healthier Tomorrow</h1>
+      </div>
+    </section>
+
+   <section class="cards-section">
+    <div class="cards-row top-row">
+        <!-- Card 1 -->
+        <a class="card" href="medical.html" id="card-medical">
+            <div class="card-icon"><img src="icon-medical.jpg" alt=""></div>
+            <h3>Medical Technology</h3>
+            <p>Advancing healthcare solutions</p>
+        </a>
+
+        <!-- Card 2 -->
+        <a class="card" href="scientific.html" id="card-scientific">
+            <div class="card-icon"><img src="icon-scientific.jpg" alt=""></div>
+            <h3>Scientific Technology</h3>
+            <p>Innovative research and development</p>
+        </a>
+
+        <!-- Card 3 -->
+        <a class="card" href="education.html" id="card-education">
+            <div class="card-icon"><img src="icon-education.jpg" alt=""></div>
+            <h3>Education Technology</h3>
+            <p>Improving learning environments</p>
+        </a>
+
+        <!-- Card 4 -->
+        <a class="card" href="information.html" id="card-information">
+            <div class="card-icon"><img src="icon-info.jpg" alt=""></div>
+            <h3>Information Technology</h3>
+            <p>Effective IT systems and networks</p>
+        </a>
+    </div>
+
+    <!-- Engineering card (centered) -->
+    <div class="cards-row engineering-row">
+        <a class="card wide-card" href="engineering.html" id="card-engineering">
+            <div class="card-icon"><img src="icon-engineering.jpg" alt=""></div>
+            <h3>Engineering</h3>
+            <p>Quality engineering services</p>
+        </a>
+    </div>
+</section>
+  </div>
+</section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      
+      <p class="template-note"><p>© 2025 CompanyName. This is a template for demonstration purposes only.</p>
+    </div>
+  </footer>
+
+  <!-- Inline script handles mobile menu and about dropdown toggle -->
+  <script>
+    (function () {
+      // set footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // hamburger open/close for nav (desktop unchanged)
+      const hamburger = document.getElementById('hamburger');
+      const nav = document.querySelector('.main-nav');
+
+      if (hamburger && nav) {
+        hamburger.addEventListener('click', function () {
+          const active = nav.classList.toggle('active');
+          hamburger.setAttribute('aria-expanded', active ? 'true' : 'false');
+        });
+      }
+
+      // About dropbtn toggle — mobile friendly
+      const dropBtn = document.querySelector('.dropbtn');
+      const dropMenu = document.querySelector('.dropdown-box');
+
+      function isMobile() { return window.innerWidth <= 768; }
+
+      if (dropBtn && dropMenu) {
+        dropBtn.addEventListener('click', function (e) {
+          if (!isMobile()) return; // on desktop we keep original behaviour (hover/desktop)
+          e.preventDefault();
+          const shown = dropMenu.classList.toggle('show');
+          dropBtn.setAttribute('aria-expanded', shown ? 'true' : 'false');
+          dropMenu.setAttribute('aria-hidden', shown ? 'false' : 'true');
+        });
+
+        // close when clicking outside (mobile)
+        document.addEventListener('click', function (e) {
+          if (!isMobile()) return;
+          if (!dropMenu.classList.contains('show')) return;
+          if (dropBtn.contains(e.target) || dropMenu.contains(e.target)) return;
+          dropMenu.classList.remove('show');
+          dropBtn.setAttribute('aria-expanded', 'false');
+          dropMenu.setAttribute('aria-hidden', 'true');
+        });
+
+        // if user resizes to desktop — ensure menu closed
+        window.addEventListener('resize', function () {
+          if (!isMobile()) {
+            dropMenu.classList.remove('show');
+            dropBtn.setAttribute('aria-expanded', 'false');
+            dropMenu.setAttribute('aria-hidden', 'true');
+          }
+        });
+      }
+    })();
+  </script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('.main-nav');
+
+  if (!hamburger || !navMenu) return;
+
+  hamburger.addEventListener('click', (e) => {
+    // optional: stop clicks from bubbling
+    e.stopPropagation();
+
+    // toggle nav visibility
+    navMenu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+  });
+
+  // close nav when clicking outside it (mobile)
+  document.addEventListener('click', (e) => {
+    if (!navMenu.classList.contains('active')) return;
+    // if click outside nav and hamburger
+    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      navMenu.classList.remove('active');
+      hamburger.classList.remove('active');
+    }
+  });
+
+  // optional: close nav on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+      navMenu.classList.remove('active');
+      hamburger.classList.remove('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
