@@ -1942,67 +1942,6 @@ h1 {
 }
 
 
-/* ----- Cards layout (4 + wide centered) ----- */
-.cards-section { padding: 36px 0 64px; background: transparent; }
-.cards-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-/* grid for the 4 square cards */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 26px;
-  align-items: stretch;
-  margin-bottom: 28px;
-}
-
-/* individual card */
-.card {
-  display: block;
-  background: #fff;
-  border-radius: 16px;
-  padding: 28px 22px;
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 8px 22px rgba(22,33,48,0.06);
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(22,33,48,0.08); }
-
-/* icon area */
-.card-icon { height: 72px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
-.card-icon img { width:56px; height:56px; object-fit:contain; opacity:0.95 }
-
-/* title & subtitle */
-.card h3 { margin: 6px 0 8px; font-size:20px; color:#2c6f86; font-weight:700; }
-.card .card-sub { margin:0; color:#66737a; font-size:14px; line-height:1.4; }
-
-/* wide center card */
-.center-card-wrap { display:flex; justify-content:center; }
-.card-wide {
-  width: 72%;
-  border-radius: 14px;
-  display:flex;
-  gap:18px;
-  align-items:center;
-  padding: 28px 36px;
-  text-align:center;
-}
-.card-wide .card-icon.small { height:48px; width:48px; margin:0 auto 0 0; }
-.card-wide h3 { font-size:22px; }
-
-/* responsive: stack on tablet/mobile */
-@media (max-width: 992px) {
-  .cards-grid { grid-template-columns: repeat(2, 1fr); gap:18px; }
-  .card-wide { width: 88%; padding:22px; }
-}
-@media (max-width: 600px) {
-  .cards-grid { grid-template-columns: 1fr; }
-  .card-wide { width: 96%; padding:18px; flex-direction:column; align-items:center; text-align:center; }
-  .card-wide .card-icon.small { margin-bottom:10px; }
-}
-
-
 /* 4 cards in first row */
 .cards-row.top-row {
     display: flex;
@@ -2069,50 +2008,287 @@ h1 {
     }
 }
 
-/* Desktop card sizing improvement */
-@media (min-width: 1024px) {
-    .cards-row {
-        gap: 30px;          /* More space between cards */
-    }
+/* MOBILE: header overlap & card width fixes
+   Paste at end of styles.css
+   (Only active on screens <= 600px; desktop untouched)
+*/
+@media (max-width: 600px) {
 
-    .card {
-        height: 200px;      /* Increase height */
-        padding: 30px 20px; /* More breathing room */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
+  /* container / page column: center & constrain so page fits on phones */
+  body, html {
+    overflow-x: hidden; /* avoid horizontal scroll */
+  }
+  .site-inner, .page-inner, .page-wrapper, .container, main {
+    max-width: 380px !important;    /* narrow column for phones */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box;
+  }
 
-    /* Engineering card wider and taller */
-    #card-engineering {
-        height: 220px;
-    }
+  /* header wrapper: allow absolute positioning of hamburger without changing its look */
+  .header-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  
+
+  /* company name: allow truncation (no wrapping into hamburger), keep original font/appearance */
+  .logo-text, .logo .logo-text {
+    font-size: 20px;             /* adjust to taste */
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: calc(100% - 64px); /* reserve ~64px for hamburger; tweak if needed */
+    vertical-align: middle;
+  }
+
+  /* POSITION hamburger only (visual style preserved) */
+  button.hamburger, #hamburger4, .menu-toggle {
+    position: absolute;
+    right: 10px;                 /* move to right edge of header */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1200;               /* make sure it's on top */
+    background: transparent;     /* do not change style, just ensure transparent background */
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+  }
+
+  /* hide any large white overlay/backdrop that might sit behind the nav panel */
+  .menu-overlay, .nav-overlay, .dropdown-backdrop, .mobile-menu-bg {
+    display: none !important;
+  }
+
+ 
+  /* tighten gap between hero and cards */
+  .hero + .cards-grid, .hero + .services-grid, .hero + .features-grid {
+    margin-top: 8px !important;
+    padding-top: 0 !important;
+  }
+
+  /* CARDS GRID: slightly wider cards on phones and centered */
+  .cards-grid, .services-grid, .features-grid {
+    max-width: 360px;
+    margin: 8px auto 26px;
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 12px;
+    grid-row-gap: 14px;
+    box-sizing: border-box;
+  }
+
+  /* individual card styling - slightly wider by reducing padding */
+  .card, .service-card, .feature-card {
+    padding: 18px 12px;
+    border-radius: 14px;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+  }
+  .card img, .card svg, .service-card img {
+    width:46px;
+    height:46px;
+    margin-bottom:10px;
+  }
+
+  /* engineering card spans full width */
+  .engineering-card, .card.engineering {
+    grid-column: 1 / -1;
+    padding: 20px;
+  }
+
+  /* small footer spacing for phones */
+  footer {
+    padding: 14px 10px;
+    font-size: 13px;
+  }
 }
 
+/* ---- MOBILE FIXES ---- */
 @media (max-width: 768px) {
 
-    /* Center the grid */
-    .cards-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;     /* ← Centers cards horizontally */
-        justify-content: center;
-        gap: 20px;               /* Space between cards */
+    /* Reduce gap between hero image + cards */
+    .cards-section {
+        margin-top: 10px;          /* previously too large */
         width: 100%;
+        padding: 0 12px;           /* keeps cards centered */
     }
 
-    /* Make cards narrower like your screenshot */
+    /* Each card */
     .card {
-        width: 85%;              /* ← Adjust this (80–90%) until perfect */
-        max-width: 350px;        /* Prevent too large on big phones */
-        margin: 0 auto;          /* Centers each card */
+        width: calc(50% - 14px);   /* makes cards wider like your screenshot */
+        margin: 6px;               /* spacing between cards */
+        padding: 18px 10px;
+        border-radius: 18px;
     }
 
-    /* Engineering card */
-    .engineering-card {
-        width: 90%;
-        max-width: 380px;
-        margin: 10px auto;
+    /* Icon size stays perfect */
+    .card img {
+        width: 55px;
+        height: 55px;
+    }
+
+    /* Title */
+    .card h3 {
+        font-size: 1.05rem;
+        margin-top: 8px;
+    }
+
+    /* Description */
+    .card p {
+        font-size: 0.82rem;
+    }
+
+    /* Ensure whole phone width fits */
+    body, .page-home {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Fix overlapping of CompanyName + Hamburger */
+    .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 14px;
+    }
+
+    .logo-text {
+        font-size: 1.3rem;
+        white-space: nowrap;
+    }
+
+    .hamburger {
+        margin-left: auto;
     }
 }
 
+/* ---- STRONG MOBILE CARD WIDTH FIX ---- */
+@media (max-width: 768px) {
+
+    /* Container spacing */
+    .cards-section {
+        margin-top: 12px;
+        padding: 0 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;   /* Centers the cards properly */
+    }
+
+    /* FORCE bigger width like reference */
+    .card {
+        width: 46%;                /* FINAL WIDTH → matches your screenshot */
+        max-width: 185px;          /* prevents shrinking on wider phones */
+        min-width: 165px;          /* prevents becoming too small */
+        margin: 10px 6px;
+        padding: 20px 12px;
+        border-radius: 18px;
+        box-sizing: border-box;
+    }
+
+    .card img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .card h3 {
+        font-size: 1.05rem;
+        margin-top: 8px;
+    }
+
+    .card p {
+        font-size: 0.82rem;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Fix overlapping logo + hamburger */
+    .header-inner {
+        padding: 12px 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-text {
+        font-size: 1.35rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Reduce spacing under hero image */
+    .hero-section {
+        margin-bottom: 8px !important;   /* small clean gap */
+    }
+
+    /* If your hero image container has padding, reduce it */
+    .hero-section img,
+    .hero-content {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* Cards move up closer to hero image */
+    .cards-section {
+        margin-top: 6px !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Force hero section to sit right above the cards */
+    .hero-section {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* Remove ANY hidden padding inside hero */
+    .hero-section * {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* Pull cards section upward */
+    .cards-section {
+        margin-top: -10px !important;  /* adjust -5px / -10px / -15px as you prefer */
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Make hero image wider */
+    .hero-section img {
+        width: 120% !important;     /* increase width */
+        margin-left: -10% !important; /* center the overflow */
+    }
+
+    /* Reduce gap between hero and cards */
+    .hero-section {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .cards-section {
+        margin-top: -5px !important;
+    }
+}
