@@ -1,29 +1,49 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Education Technology</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body class="subpage">
   <header class="site-header small">
     <div class="header-inner">
       <a class="logo" href="index.html">
-         <div class="placeholder-logo">LOGO</div> 
-        <span class="logo-text" style="font-weight:600;margin-left:8px;">CompanyName</span>
+        <div class="placeholder-logo">LOGO</div>
+        <span class="logo-text">CompanyName</span>
       </a>
-      <nav class="main-nav">
+
+      <nav class="main-nav" aria-label="Main navigation">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="about-intro.html">About</a></li>
+
+          <!-- ABOUT dropdown -->
+          <li class="dropdown">
+            <a href="#" class="dropbtn" aria-expanded="false">About <span class="chev">▾</span></a>
+            <div class="dropdown-box" role="menu" aria-hidden="true">
+              <a href="about-intro.html" class="drop-item" role="menuitem">
+                <strong>Introduction</strong><br><span class="muted">Learn about our company and legacy</span>
+              </a>
+
+              <a href="about-management.html" class="drop-item" role="menuitem">
+                <strong>Management</strong><br><span class="muted">Meet our leadership team</span>
+              </a>
+            </div>
+          </li>
+
           <li><a href="subsidiaries.html">Subsidiaries</a></li>
           <li><a href="activities.html">Activities</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a class="cta" href="" target="_blank">shop with us</a></li>
         </ul>
       </nav>
-      <button class="hamburger" id="hamburger4" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -32,14 +52,18 @@
       <img src="education.jpg" alt="Education Technology" />
     </aside>
 
-    <section class="right-content">
-      <button class="btn-back" onclick="history.back()">← Back</button>
 
+    <section class="right-content">
       <h1>Education Technology</h1>
       <p class="tagline">“Fostering quality education by engaging innovative learning environment”</p>
 
       <div class="copy">
-        <p>We education technology division is dedicated to providing quality products and services that support right from K-12 to universities, research institutes and training facilities in their efforts to provide the best possible tools and resources to build positive learning environment. We are proud to have collaborated with leading innovators in the field of education technology to deliver high quality learning solutions and support services. Together with our partners we are transforming the way students seek and acquire knowledge, engaging a new audience of learners through industry-defining smart education technology.</p>
+        <p>We education technology division is dedicated to providing quality products and services that support right
+          from K-12 to universities, research institutes and training facilities in their efforts to provide the best
+          possible tools and resources to build positive learning environment. We are proud to have collaborated with
+          leading innovators in the field of education technology to deliver high quality learning solutions and support
+          services. Together with our partners we are transforming the way students seek and acquire knowledge, engaging
+          a new audience of learners through industry-defining smart education technology.</p>
 
         <p>Our product range includes but not limited to:</p>
         <ul>
@@ -52,16 +76,69 @@
           <li>Complete range of physical testing equipment.</li>
         </ul>
 
-        <p>Most importantly, we just don’t sell products and solutions, we are passionate people who can turn such solutions into applicable, understandable business solutions to make learning easier for the students and the teaching community. We promise to meet the expectation of our valuable customers in terms of price, service and quality and is committed to making your experience with us as easy and smooth as possible.</p>
+        <p>Most importantly, we just don’t sell products and solutions, we are passionate people who can turn such
+          solutions into applicable, understandable business solutions to make learning easier for the students and the
+          teaching community. We promise to meet the expectation of our valuable customers in terms of price, service
+          and quality and is committed to making your experience with us as easy and smooth as possible.</p>
       </div>
 
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container"> <p>© 2025 CompanyName. This is a template for demonstration purposes only.</p>
+    <div class="footer-top-line"></div>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Reach Out To Us</h3>
+          <p>This website is created for demonstration and educational purposes only</p>
+          <ul class="footer-list">
+            <li>the content shown does not represent and real products,services, or companies</li>
+            <li>any names, images,or reference used are purely illustrative</li>
+            <li>information provided on this site should not considered oficcialy or proffessional advice </li>
+            <li>this website is part of a design and development showcase</li>
+          </ul>
+          <div class="footer-location">
+            <span class="location-icon">📍</span>
+            <span>Serving clients across multiple regions</span>
+          </div>
+        </div>
+
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24">
+              <path
+                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+              </path>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+            </svg></a>
+          <a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24">
+              <path
+                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+              </path>
+            </svg></a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 company name. All rights reserved.</p>
+      </div>
+    </div>
   </footer>
 
   <script src="script.js"></script>
 </body>
+
 </html>

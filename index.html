@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Name — Home</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body class="page-home">
 
   <header class="site-header small">
@@ -28,9 +30,7 @@
               <a href="about-intro.html" class="drop-item" role="menuitem">
                 <strong>Introduction</strong><br><span class="muted">Learn about our company and legacy</span>
               </a>
-              <a href="about-vision.html" class="drop-item" role="menuitem">
-                <strong>Vision &amp; Mission</strong><br><span class="muted">Our purpose and principles</span>
-              </a>
+
               <a href="about-management.html" class="drop-item" role="menuitem">
                 <strong>Management</strong><br><span class="muted">Meet our leadership team</span>
               </a>
@@ -54,152 +54,212 @@
   <main>
     <!-- hero -->
     <section class="hero">
-      <!-- put an image file named hero.jpg in the same folder -->
-      <img src="hero.jpg" alt="City skyline" class="hero-img" />
+      <!-- Banner video - replace 'hero-video.mp4' with your video file -->
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="hero-video.mp4" type="video/mp4">
+        <!-- Fallback image if video doesn't load -->
+        <img src="hero.jpg" alt="Healthcare background" />
+      </video>
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <h1 class="hero-title">Advancing Care For Healthier Tomorrow</h1>
       </div>
     </section>
 
-   <section class="cards-section">
-    <div class="cards-row top-row">
+    <!-- "Who We Are" Section -->
+    <section class="who-we-are-section fade-in-section">
+      <div class="container">
+        <h2>Who We Are</h2>
+        <p>We are committed to advancing healthcare by delivering innovative, reliable, and patient-focused solutions.
+          With a strong foundation in medical and scientific expertise, we work closely with healthcare professionals to
+          address unmet medical needs and improve quality of life. Our approach combines innovation, integrity, and
+          long-term partnerships to support a healthier tomorrow.</p>
+      </div>
+    </section>
+
+    <section class="cards-section">
+      <!-- Mobile Chevron Controls -->
+      <div class="mobile-chevrons">
+        <button id="scroll-left" class="chevron-btn" aria-label="Scroll left">‹</button>
+        <button id="scroll-right" class="chevron-btn" aria-label="Scroll right">›</button>
+      </div>
+
+      <div class="cards-row top-row">
         <!-- Card 1 -->
         <a class="card" href="medical.html" id="card-medical">
-            <div class="card-icon"><img src="icon-medical.jpg" alt=""></div>
+          <div class="card-icon"><img src="icon-medical.jpg" alt=""></div>
+          <div class="card-content">
             <h3>Medical Technology</h3>
             <p>Advancing healthcare solutions</p>
+            <ul class="card-features">
+              <li>Advanced diagnostic equipment</li>
+              <li>Patient monitoring systems</li>
+              <li>Surgical instruments</li>
+            </ul>
+            <span class="card-btn">Know More →</span>
+          </div>
         </a>
 
         <!-- Card 2 -->
         <a class="card" href="scientific.html" id="card-scientific">
-            <div class="card-icon"><img src="icon-scientific.jpg" alt=""></div>
+          <div class="card-icon"><img src="icon-scientific.jpg" alt=""></div>
+          <div class="card-content">
             <h3>Scientific Technology</h3>
             <p>Innovative research and development</p>
+            <ul class="card-features">
+              <li>Laboratory equipment</li>
+              <li>Research instruments</li>
+              <li>Analysis systems</li>
+            </ul>
+            <span class="card-btn">Know More →</span>
+          </div>
         </a>
 
         <!-- Card 3 -->
         <a class="card" href="education.html" id="card-education">
-            <div class="card-icon"><img src="icon-education.jpg" alt=""></div>
+          <div class="card-icon"><img src="icon-education.jpg" alt=""></div>
+          <div class="card-content">
             <h3>Education Technology</h3>
             <p>Improving learning environments</p>
+            <ul class="card-features">
+              <li>Interactive learning tools</li>
+              <li>Digital classrooms</li>
+              <li>Educational software</li>
+            </ul>
+            <span class="card-btn">Know More →</span>
+          </div>
         </a>
 
         <!-- Card 4 -->
         <a class="card" href="information.html" id="card-information">
-            <div class="card-icon"><img src="icon-info.jpg" alt=""></div>
+          <div class="card-icon"><img src="icon-info.jpg" alt=""></div>
+          <div class="card-content">
             <h3>Information Technology</h3>
             <p>Effective IT systems and networks</p>
+            <ul class="card-features">
+              <li>Network infrastructure</li>
+              <li>Cloud solutions</li>
+              <li>Cybersecurity systems</li>
+            </ul>
+            <span class="card-btn">Know More →</span>
+          </div>
         </a>
-    </div>
 
-    <!-- Engineering card (centered) -->
-    <div class="cards-row engineering-row">
-        <a class="card wide-card" href="engineering.html" id="card-engineering">
-            <div class="card-icon"><img src="icon-engineering.jpg" alt=""></div>
+        <!-- Card 5 - Engineering (moved from separate row) -->
+        <a class="card" href="engineering.html" id="card-engineering">
+          <div class="card-icon"><img src="icon-engineering.jpg" alt=""></div>
+          <div class="card-content">
             <h3>Engineering</h3>
             <p>Quality engineering services</p>
+            <ul class="card-features">
+              <li>Project management</li>
+              <li>Technical consulting</li>
+              <li>Infrastructure design</li>
+            </ul>
+            <span class="card-btn">Know More →</span>
+          </div>
         </a>
-    </div>
-</section>
-  </div>
-</section>
+      </div>
+
+      <!-- Pagination dots for mobile carousel -->
+      <div class="carousel-pagination" aria-label="Card carousel pagination">
+        <span class="dot" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+        <span class="dot" data-index="4"></span>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-us-section">
+      <div class="about-us-content">
+        <h2>About Us</h2>
+        <p>We are a leading provider of innovative solutions across medical, scientific, educational, and information
+          technology sectors. With decades of experience and a commitment to excellence, we deliver cutting-edge
+          products and services that enhance operational efficiency and drive sustainable growth. Our dedicated team of
+          professionals works tirelessly to meet the evolving needs of our clients, ensuring quality and reliability in
+          every project we undertake.</p>
+        <a href="about-intro.html" class="about-us-btn">Know More →</a>
+      </div>
+      <div class="about-us-image">
+        <img src="al essa.jpg" alt="About our company" />
+      </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="contact-cta">
+      <div class="contact-box">
+        <h2>Contact Us</h2>
+        <p>For inquiries, collaborations, or support, our dedicated team is here to assist you. Whether you are
+          interested in our products, seeking partnership opportunities, or have general questions, please do not
+          hesitate to reach out.</p>
+
+        <ul class="contact-list">
+          <li>Product inquiries</li>
+          <li>Partnership opportunities</li>
+          <li>General questions and support</li>
+        </ul>
+
+        <a href="contact.html" class="contact-btn">Send us a message</a>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
+    <div class="footer-top-line"></div>
     <div class="container">
-      
-      <p class="template-note"><p>© 2025 CompanyName. This is a template for demonstration purposes only.</p>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Reach Out To Us</h3>
+          <p>This website is created for demonstration and educational purposes only</p>
+          <ul class="footer-list">
+            <li>the content shown does not represent and real products,services, or companies</li>
+            <li>any names, images,or reference used are purely illustrative</li>
+            <li>information provided on this site should not considered oficcialy or proffessional advice </li>
+            <li>this website is part of a design and development showcase</li>
+          </ul>
+          <div class="footer-location">
+            <span class="location-icon">📍</span>
+            <span>Serving clients across multiple regions</span>
+          </div>
+        </div>
+
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24">
+              <path
+                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+              </path>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+            </svg></a>
+          <a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24">
+              <path
+                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+              </path>
+            </svg></a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 company name. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
-  <!-- Inline script handles mobile menu and about dropdown toggle -->
-  <script>
-    (function () {
-      // set footer year
-      document.getElementById('year').textContent = new Date().getFullYear();
-
-      // hamburger open/close for nav (desktop unchanged)
-      const hamburger = document.getElementById('hamburger');
-      const nav = document.querySelector('.main-nav');
-
-      if (hamburger && nav) {
-        hamburger.addEventListener('click', function () {
-          const active = nav.classList.toggle('active');
-          hamburger.setAttribute('aria-expanded', active ? 'true' : 'false');
-        });
-      }
-
-      // About dropbtn toggle — mobile friendly
-      const dropBtn = document.querySelector('.dropbtn');
-      const dropMenu = document.querySelector('.dropdown-box');
-
-      function isMobile() { return window.innerWidth <= 768; }
-
-      if (dropBtn && dropMenu) {
-        dropBtn.addEventListener('click', function (e) {
-          if (!isMobile()) return; // on desktop we keep original behaviour (hover/desktop)
-          e.preventDefault();
-          const shown = dropMenu.classList.toggle('show');
-          dropBtn.setAttribute('aria-expanded', shown ? 'true' : 'false');
-          dropMenu.setAttribute('aria-hidden', shown ? 'false' : 'true');
-        });
-
-        // close when clicking outside (mobile)
-        document.addEventListener('click', function (e) {
-          if (!isMobile()) return;
-          if (!dropMenu.classList.contains('show')) return;
-          if (dropBtn.contains(e.target) || dropMenu.contains(e.target)) return;
-          dropMenu.classList.remove('show');
-          dropBtn.setAttribute('aria-expanded', 'false');
-          dropMenu.setAttribute('aria-hidden', 'true');
-        });
-
-        // if user resizes to desktop — ensure menu closed
-        window.addEventListener('resize', function () {
-          if (!isMobile()) {
-            dropMenu.classList.remove('show');
-            dropBtn.setAttribute('aria-expanded', 'false');
-            dropMenu.setAttribute('aria-hidden', 'true');
-          }
-        });
-      }
-    })();
-  </script>
-  <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const hamburger = document.querySelector('.hamburger');
-  const navMenu = document.querySelector('.main-nav');
-
-  if (!hamburger || !navMenu) return;
-
-  hamburger.addEventListener('click', (e) => {
-    // optional: stop clicks from bubbling
-    e.stopPropagation();
-
-    // toggle nav visibility
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
-  });
-
-  // close nav when clicking outside it (mobile)
-  document.addEventListener('click', (e) => {
-    if (!navMenu.classList.contains('active')) return;
-    // if click outside nav and hamburger
-    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-      navMenu.classList.remove('active');
-      hamburger.classList.remove('active');
-    }
-  });
-
-  // optional: close nav on ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-      navMenu.classList.remove('active');
-      hamburger.classList.remove('active');
-    }
-  });
-});
-</script>
+  <script src="script.js"></script>
 </body>
+
 </html>

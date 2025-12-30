@@ -1,352 +1,240 @@
-// main.js
-document.addEventListener('DOMContentLoaded', function () {
-  // hamburger toggles overlay
-  const hamburger = document.getElementById('hamburger');
-  const overlay = document.getElementById('overlayMenu');
-  if (hamburger) {
-    hamburger.addEventListener('click', function () {
-      overlay.classList.toggle('open');
-      overlay.setAttribute('aria-hidden', overlay.classList.contains('open') ? 'false' : 'true');
-    });
-  }
-  // duplicate for other hamburgers (subpages)
-  document.querySelectorAll('.hamburger').forEach(btn => {
-    btn.addEventListener('click', function () {
-      document.getElementById('overlayMenu').classList.toggle('open');
-    });
-  });
+/**
+ * script.js
+ * Centralized logic for navigation, dropdowns, animations, and common UI interactions.
+ */
 
-  // accordion functionality
-  document.querySelectorAll('.acc-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const panel = btn.nextElementSibling;
-      const isOpen = panel.style.display === 'block';
-      if (isOpen) {
-        panel.style.display = 'none';
-      } else {
-        panel.style.display = 'block';
-      }
-    });
-  });
+document.addEventListener('DOMContentLoaded', () => {
+  // --- ELEMENTS ---
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('.main-nav');
+  const dropdowns = document.querySelectorAll('.dropdown');
+  const body = document.body;
 
-  // make cards animate on click (fade out -> navigate)
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', function (e) {
-      // allow normal link navigation
-      e.preventDefault();
-      const href = card.getAttribute('href');
-      if (!href) return;
-      document.body.style.transition = 'opacity 220ms';
-      document.body.style.opacity = 0;
-      setTimeout(() => window.location.href = href, 220);
-    });
-  });
-
-  // overlay menu links: close overlay on link click
-  document.querySelectorAll('.overlay-menu a').forEach(a => {
-    a.addEventListener('click', function () {
-      document.getElementById('overlayMenu').classList.remove('open');
-    });
-  });
-
-  // contact form mock - show a success message and clear fields
-  const form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', function (ev) {
-      ev.preventDefault();
-      // basic front-end validation done by HTML required attributes
-      alert('Thanks — your message was received (demo).');
-      form.reset();
-    });
+  // Create Navigation Overlay if it doesn't exist
+  let navOverlay = document.querySelector('.nav-overlay');
+  if (!navOverlay) {
+    navOverlay = document.createElement('div');
+    navOverlay.className = 'nav-overlay';
+    document.body.appendChild(navOverlay);
   }
 
-  // page fade-in for any direct page load
-  document.body.style.opacity = 0;
-  setTimeout(() => (document.body.style.opacity = 1), 40);
-});
+  const toggleNav = (forceClose = false) => {
+    const isOpen = forceClose ? false : !navMenu.classList.contains('active');
 
-// HAMBURGER MENU TOGGLE
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('mainNav');
+    hamburger.classList.toggle('active', isOpen);
+    navMenu.classList.toggle('active', isOpen);
+    navOverlay.classList.toggle('active', isOpen);
+    body.classList.toggle('nav-open', isOpen);
 
-hamburger.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-});
+    hamburger.setAttribute('aria-expanded', isOpen);
+  };
 
-document.addEventListener("DOMContentLoaded", function () {
-  const hamburger = document.getElementById("hamburger");
-  const navMenu = document.getElementById("mainNav");
-  const dropdown = document.querySelector(".dropdown");
-
-  // Hamburger toggle
-  hamburger.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-  });
-
-  // Mobile dropdown toggle
-  dropdown.addEventListener("click", (e) => {
-    e.preventDefault();
-    dropdown.classList.toggle("active");
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const hamburger = document.getElementById("hamburger");
-  const navMenu = document.getElementById("mainNav");
-  const dropdown = document.querySelector(".dropdown");
-  const dropdownLinks = document.querySelectorAll(".dropdown-menu a");
-
-  // Hamburger toggle
-  hamburger.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-  });
-
-  // Dropdown toggle (only opens the menu, doesn’t block link clicks)
-  dropdown.addEventListener("click", (e) => {
-    const isLink = e.target.tagName === "A";
-    if (!isLink) {
-      e.preventDefault();
-      dropdown.classList.toggle("active");
-    }
-  });
-
-  // Close menu when a dropdown link is clicked
-  dropdownLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      navMenu.classList.remove("active");
-      dropdown.classList.remove("active");
-    });
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const hamburger = document.getElementById("hamburger");
-  const navMenu = document.querySelector(".main-nav");
-
-  if (hamburger) {
-    hamburger.addEventListener("click", function () {
-      navMenu.classList.toggle("active");
-    });
-  }
-
-  // Mobile dropdown fix
-  const dropdowns = document.querySelectorAll(".dropdown");
-  dropdowns.forEach(drop => {
-    drop.addEventListener("click", function (e) {
-      if (window.innerWidth <= 768) {
-        e.stopPropagation();
-        this.querySelector(".dropdown-menu").classList.toggle("show");
-      }
-    });
-  });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.getElementById("hamburger");
-  const navMenu = document.querySelector(".main-nav");
-  const dropdown = document.querySelector(".dropdown");
-
-  // --- Hamburger toggle ---
-  if (hamburger) {
-    hamburger.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
-    });
-  }
-
-  // --- Dropdown behavior ---
-  if (dropdown) {
-    const dropBtn = dropdown.querySelector(".dropbtn");
-    const dropMenu = dropdown.querySelector(".dropdown-menu");
-
-    // For desktop (hover)
-    dropdown.addEventListener("mouseenter", () => {
-      if (window.innerWidth > 768) dropMenu.style.display = "block";
-    });
-    dropdown.addEventListener("mouseleave", () => {
-      if (window.innerWidth > 768) dropMenu.style.display = "none";
-    });
-
-    // For mobile (tap)
-    dropBtn.addEventListener("click", (e) => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        dropMenu.classList.toggle("show");
-      }
-    });
-
-    // When you click any dropdown link on mobile, close the menu
-    dropMenu.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        dropMenu.classList.remove("show");
-        navMenu.classList.remove("active");
-      });
-    });
-  }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.getElementById("hamburger");
-  const navMenu = document.querySelector(".main-nav");
-  const dropdown = document.querySelector(".dropdown");
-
-  // Hamburger toggle
-  if (hamburger) {
-    hamburger.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
-    });
-  }
-
-  // Dropdown toggle
-  if (dropdown) {
-    const dropBtn = dropdown.querySelector(".dropbtn");
-    const dropMenu = dropdown.querySelector(".dropdown-menu");
-
-    // Desktop hover
-    dropdown.addEventListener("mouseenter", () => {
-      if (window.innerWidth > 768) dropMenu.style.display = "block";
-    });
-    dropdown.addEventListener("mouseleave", () => {
-      if (window.innerWidth > 768) dropMenu.style.display = "none";
-    });
-
-    // Mobile click
-    dropBtn.addEventListener("click", (e) => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        dropMenu.classList.toggle("show");
-      }
-    });
-
-    // Close dropdown when link clicked
-    dropMenu.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        dropMenu.classList.remove("show");
-        navMenu.classList.remove("active");
-      });
-    });
-  }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  // ✅ Detect any element with class 'hamburger' (not just a specific ID)
-  const hamburger = document.querySelector(".hamburger");
-  const navMenu = document.querySelector(".main-nav");
-
-  // ✅ Handle mobile nav toggle
+  // --- NAVIGATION: HAMBURGER TOGGLE ---
   if (hamburger && navMenu) {
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("active");
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleNav();
     });
   }
 
-  // ✅ Handle About dropdown (desktop hover + mobile click)
-  const dropdown = document.querySelector(".dropdown");
-  if (dropdown) {
-    const dropBtn = dropdown.querySelector(".dropbtn");
-    const dropMenu = dropdown.querySelector(".dropdown-menu");
+  // --- NAVIGATION: DROPDOWN BEHAVIOR ---
+  dropdowns.forEach(dropdown => {
+    const btn = dropdown.querySelector('.dropbtn');
+    const menu = dropdown.querySelector('.dropdown-box, .dropdown-menu');
 
-    // Desktop hover
-    dropdown.addEventListener("mouseenter", () => {
-      if (window.innerWidth > 768) {
-        dropMenu.style.display = "block";
-      }
-    });
-    dropdown.addEventListener("mouseleave", () => {
-      if (window.innerWidth > 768) {
-        dropMenu.style.display = "none";
-      }
-    });
-
-    // Mobile click toggle
-    dropBtn.addEventListener("click", (e) => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        dropMenu.classList.toggle("show");
-      }
-    });
-
-    // Close dropdown when clicking a link (mobile)
-    dropMenu.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        dropMenu.classList.remove("show");
-        navMenu.classList.remove("active");
-        hamburger.classList.remove("active");
-      });
-    });
-  }
-
-  // ✅ Close mobile nav when clicking any link
-  document.querySelectorAll(".main-nav a").forEach(link => {
-    link.addEventListener("click", () => {
-      navMenu.classList.remove("active");
-      hamburger.classList.remove("active");
-    });
-  });
-
-  // ✅ Optional: Close dropdown if you click outside
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".dropdown")) {
-      document.querySelectorAll(".dropdown-menu").forEach(menu => {
+    if (btn && menu) {
+      // Mobile toggle on click
+      btn.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
-          menu.classList.remove("show");
+          e.preventDefault();
+          e.stopPropagation(); // Stop from reaching document/overlay
+          // e.stopImmediatePropagation() might be too much if we want other sub-nav logic, 
+          // but we MUST prevent the link-click listener from firing.
+
+          const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+          // Close other dropdowns first
+          dropdowns.forEach(other => {
+            if (other !== dropdown) {
+              const otherMenu = other.querySelector('.dropdown-box, .dropdown-menu');
+              const otherBtn = other.querySelector('.dropbtn');
+              if (otherMenu) otherMenu.classList.remove('show');
+              if (otherBtn) {
+                otherBtn.classList.remove('active');
+                otherBtn.setAttribute('aria-expanded', 'false');
+              }
+            }
+          });
+
+          // Toggle current
+          const newState = !isExpanded;
+          menu.classList.toggle('show', newState);
+          btn.classList.toggle('active', newState);
+          btn.setAttribute('aria-expanded', newState);
+          menu.setAttribute('aria-hidden', !newState);
         }
       });
+
+      // Desktop: CSS :hover handles dropdown display, no JS needed
     }
   });
-});
 
-document.addEventListener("DOMContentLoaded", function() {
-  const hamburger = document.querySelector(".hamburger");
-  const navMenu = document.querySelector(".main-nav");
+  // --- NAVIGATION: CLOSE ON OVERLAY CLICK ---
+  navOverlay.addEventListener('click', () => {
+    toggleNav(true);
+  });
 
-  if (hamburger && navMenu) {
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("active");
-    });
-  }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.querySelector(".hamburger");
-  const navMenu = document.querySelector(".main-nav");
-  const dropdown = document.querySelector(".dropdown");
-  const dropMenu = document.querySelector(".dropdown-menu");
-
-  if (hamburger && navMenu) {
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("active");
-    });
-  }
-
-  if (dropdown && dropMenu) {
-    dropdown.addEventListener("click", (e) => {
+  // --- NAVIGATION: CLOSE ON LINK CLICK (Mobile) ---
+  document.querySelectorAll('.main-nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      // ONLY close if it's NOT a dropdown toggle button
       if (window.innerWidth <= 768) {
-        e.preventDefault();
-        dropMenu.classList.toggle("show");
+        // If the clicked link is the dropbtn, DO NOT close the menu
+        if (link.classList.contains('dropbtn')) {
+          // The dropdown logic above handles it
+          return;
+        }
+        toggleNav(true);
       }
     });
+  });
+
+  // --- ACCORDION LOGIC (Activities & FAQ) ---
+  const initAccordion = (btnSelector) => {
+    document.querySelectorAll(btnSelector).forEach(btn => {
+      btn.addEventListener('click', function () {
+        const content = this.nextElementSibling;
+        if (!content) return;
+
+        const isOpen = content.style.display === 'block';
+        content.style.display = isOpen ? 'none' : 'block';
+        this.classList.toggle('active', !isOpen);
+      });
+    });
+  };
+  initAccordion('.accordion-btn');
+  initAccordion('.acc-btn');
+
+  // --- CONTACT FORM HANDLER ---
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Your message has been received! (Demo purpose only)');
+      contactForm.reset();
+    });
   }
 
-  document.querySelectorAll(".main-nav a").forEach(link => {
-    link.addEventListener("click", () => {
-      navMenu.classList.remove("active");
-      hamburger.classList.remove("active");
+  // Handle window resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (window.innerWidth > 768) {
+        if (navMenu && navMenu.classList.contains('active')) {
+          toggleNav(true);
+        }
+        document.querySelectorAll('.dropdown-box, .dropdown-menu').forEach(m => {
+          m.classList.remove('show');
+          m.removeAttribute('style'); // Clear any JS inline styles
+        });
+        document.querySelectorAll('.dropbtn').forEach(b => b.classList.remove('active'));
+      }
+    }, 250);
+  });
+
+  // --- MOBILE CAROUSEL PAGINATION ---
+  const initCarousel = () => {
+    // Only run on mobile
+    if (window.innerWidth > 480) return;
+
+    const cardsRow = document.querySelector('.cards-row.top-row');
+    const pagination = document.querySelector('.carousel-pagination');
+
+    if (!pagination || !cardsRow) return;
+
+    const dots = pagination.querySelectorAll('.dot');
+    const cards = cardsRow.querySelectorAll('.card');
+
+    // Update active dot based on scroll position
+    const updateActiveDot = () => {
+      const scrollLeft = cardsRow.scrollLeft;
+      const cardWidth = cards[0]?.offsetWidth || 0;
+      const gap = 40; // margin on each side
+      const activeIndex = Math.round(scrollLeft / (cardWidth + gap));
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === activeIndex);
+      });
+    };
+
+    // Add scroll listener
+    cardsRow.addEventListener('scroll', updateActiveDot, { passive: true });
+
+    // Click dots to navigate
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        const card = cards[index];
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      });
     });
+
+    // Set initial active dot
+    updateActiveDot();
+  };
+
+  // Initialize carousel
+  initCarousel();
+
+  // Reinitialize on resize
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(initCarousel, 250);
   });
 });
 
-// ===== MOBILE HAMBURGER TOGGLE =====
-const Hamburger = document.querySelector('.hamburger');
-const mainNav = document.querySelector('.main-nav');
+/* --- MOBILE CHEVRON SCROLLING --- */
+document.addEventListener('DOMContentLoaded', () => {
+  const cardsRow = document.querySelector('.cards-row');
+  const leftBtn = document.getElementById('scroll-left');
+  const rightBtn = document.getElementById('scroll-right');
 
-if (hamburger && mainNav) {
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mainNav.classList.toggle('active');
+  if (cardsRow && leftBtn && rightBtn) {
+    rightBtn.addEventListener('click', () => {
+      cardsRow.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+
+    leftBtn.addEventListener('click', () => {
+      cardsRow.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+  }
+});
+
+/* --- SCROLL ANIMATIONS --- */
+document.addEventListener('DOMContentLoaded', () => {
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target); // Run once per element
+      }
+    });
+  }, observerOptions);
+
+  // Select elements to animate
+  // Select elements to animate
+  const animatedElements = document.querySelectorAll('section, .card, .vm-card, .footer-content, header, .hero-content, .about-section, .subsidiaries-box, .contact-form-wrap, .map-container, .intro-wrapper p, .activity-intro, .accordion-item, .subsidiaries-logo, .content p, .two-column p, .about-us-content p, .left-image, .content h1, .content h2, .content h3, .copy p, .activity-text h2, .activity-text p');
+
+  animatedElements.forEach(el => {
+    el.classList.add('fade-in-section');
+    observer.observe(el);
   });
-}
-
-
+});
