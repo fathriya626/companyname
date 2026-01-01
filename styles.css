@@ -1300,19 +1300,7 @@ ul {
 
 .who-we-are-section .container {
   max-width: 900px;
-  margin: 0;
-  /* Left align the container itself */
-}
-
-/* Reduce gap between Cards and About Us */
-.cards-section {
-  margin-bottom: 20px;
-  /* Reduced from default/implicit large margin */
-}
-
-.about-us-section {
-  padding-top: 20px;
-  /* Reduced top padding */
+  margin: 0 auto;
 }
 
 .who-we-are-section h2 {
@@ -1382,4 +1370,210 @@ ul {
 .cards-row {
   scroll-behavior: smooth;
 }
+
+/* =========================
+   MOBILE HERO VIDEO FIX
+   ========================= */
+@media (max-width: 480px) {
+
+  .hero-section {
+    position: relative;
+    height: 78vh;
+    /* Increased height for mobile */
+    overflow: hidden;
+  }
+
+  .hero-video {
+    width: 120%;
+    height: 100%;
+    object-fit: cover;
+    margin-left: -10%;
+    /* Center crop like reference */
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 6%;
+    transform: translateY(-50%);
+    text-align: left;
+    max-width: 88%;
+    color: #ffffff;
+  }
+
+  .hero-content h1 {
+    font-size: 1.9rem;
+    line-height: 1.25;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .hero-subtext {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.9;
+    margin-bottom: 20px;
+  }
+
+  /* Secondary heading + paragraph */
+  .hero-secondary h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .hero-secondary p {
+    font-size: 0.85rem;
+    line-height: 1.45;
+    opacity: 0.85;
+  }
+}
+
+.hero-content {
+  position: absolute;
+  top: 38%;
+  /* move heading upward */
+  left: 6%;
+  transform: translateY(0);
+  /* remove centering */
+  text-align: left;
+  max-width: 88%;
+}
+
+@media (max-width: 480px) {}
+
+.hero-content h1 {
+  font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(2.1rem, 6vw, 2.5rem);
+  /* ⬆ slightly bigger */
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  /* modern typography */
+  color: #ffffff;
+  margin-bottom: 0.9rem;
+  text-align: left;
+}
+
+.hero-content h1 span {
+  font-weight: 700;
+}
+
+.hero-content p {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.05rem;
+  /* ⬆ slightly bigger */
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 92%;
+}
+
+/* ===============================
+   DESKTOP HERO HEADING (ONLY)
+   =============================== */
+@media (min-width: 769px) {
+
+  .hero-section {
+    position: relative;
+  }
+
+  .hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* center horizontally */
+    justify-content: center;
+    /* center vertically */
+    text-align: center;
+    padding: 0 2rem;
+    background: none;
+    /* keep clean like old style */
+  }
+
+  .hero-content h1 {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    font-size: 3.2rem;
+    /* classic desktop hero size */
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-content p {
+    font-size: 1.15rem;
+    max-width: 720px;
+    margin: 1rem auto 0;
+  }
+}
+
+/* Paragraph section alignment */
+.about-section,
+.about-content {
+  text-align: left;
+  padding-left: 20px;
+  /* small, clean gap */
+  padding-right: 16px;
+  margin: 0;
+}
+
+.about-section h2,
+.about-content h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+@media (min-width: 1024px) {
+
+  .about-section h2,
+  .about-content h2 {
+    font-size: 1.55rem;
+  }
+}
+
+.about-section p,
+.about-content p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: 680px;
+  /* keeps it professional */
+}
+
+/* Force About paragraph to align left with small gap */
+.about-section,
+.about-content {
+  text-align: left !important;
+  margin-left: 0 !important;
+  padding-left: 14px;
+  /* small clean gap */
+  padding-right: 16px;
+}
+
+/* Prevent centering from max-width containers */
+.about-section>*,
+.about-content>* {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* Make paragraph align left with small gap */
+.about-section p,
+.about-content p {
+  text-align: left !important;
+  margin-left: 0 !important;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.about-section p {
+  max-width: 100%;
+}
+
+.about-section h2,
+.about-section h3 {
+  text-align: left !important;
+  padding-left: 16px;
 }
